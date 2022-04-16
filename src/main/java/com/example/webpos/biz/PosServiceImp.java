@@ -29,11 +29,6 @@ public class PosServiceImp implements PosService, Serializable {
     }
 
     @Override
-    public void checkout(Cart cart) {
-
-    }
-
-    @Override
     public Cart add(Cart cart, Product product, int amount) {
         return add(cart, product.getId(), amount);
     }
@@ -52,4 +47,58 @@ public class PosServiceImp implements PosService, Serializable {
     public List<Product> products() {
         return posDB.getProducts();
     }
+
+    @Override
+    public Cart deleteOne(Cart cart, String productId) {
+        Product product = posDB.getProduct(productId);
+        if (product == null) return cart;
+        cart.deleteOneProduct(product);
+        return cart;
+    }
+
+    @Override
+    public Cart deleteAll(Cart cart, String productId) {
+        Product product = posDB.getProduct(productId);
+        if (product == null) return cart;
+        cart.deleteAllProduct(product);
+        return cart;
+    }
+
+    @Override
+    public Cart clearCart(Cart cart) {
+        if (cart != null) {
+            cart.getItems().clear();
+        }
+        return cart;
+    }
+
+    @Override
+    public double checkout(Cart cart) {
+        if (cart == null) {
+            return 0;
+        }
+        double total = cart.total();
+        clearCart(cart);
+        return total;
+    }
+
+    @Override
+    public double total(Cart cart) {
+        if (cart == null) {
+            return 0;
+        }
+        return cart.total();
+    }
+
+
+    @Override
+    public double discount() {
+        return 0.05;
+    }
+
+    @Override
+    public double tax() {
+        return 0.05;
+    }
+
 }

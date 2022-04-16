@@ -64,7 +64,8 @@ public class JD implements PosDB {
             String title = el.getElementsByClass("p-name").eq(0).text();
             if (title.indexOf("，") >= 0)
                 title = title.substring(0, title.indexOf("，"));
-
+            if (id == null || id.equals(""))
+                continue;
             Product product = new Product(id, title, Double.parseDouble(price), img);
 
             list.add(product);
