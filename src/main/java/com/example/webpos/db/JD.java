@@ -21,7 +21,7 @@ public class JD implements PosDB {
     private List<Product> products = null;
 
     @Override
-    @Cacheable
+    @Cacheable(value = "products", unless = "#result == null")
     public List<Product> getProducts() {
         try {
             if (products == null)
