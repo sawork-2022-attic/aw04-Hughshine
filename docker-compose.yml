@@ -1,37 +1,37 @@
 version: '3'
  
 services:
-    redis1:
-      image: bitnami/redis-cluster:6.2
-      environment:
-        - "ALLOW_EMPTY_PASSWORD=yes"
-        - "REDIS_CLUSTER_REPLICAS=1"
-        - "REDIS_NODES=redis1 redis2 redis3 redis4"
-    redis2:
-      image: bitnami/redis-cluster:6.2
-      environment:
-        - "ALLOW_EMPTY_PASSWORD=yes"
-        - "REDIS_CLUSTER_REPLICAS=1"
-        - "REDIS_NODES=redis1 redis2 redis3 redis4"
-    redis3:
-      image: bitnami/redis-cluster:6.2
-      environment:
-        - "ALLOW_EMPTY_PASSWORD=yes"
-        - "REDIS_CLUSTER_REPLICAS=1"
-        - "REDIS_NODES=redis1 redis2 redis3 redis4"
-    redis4:
-      image: bitnami/redis-cluster:6.2
-      environment:
-        - "ALLOW_EMPTY_PASSWORD=yes"
-        - "REDIS_CLUSTER_REPLICAS=1"
-        - "REDIS_NODES=redis1 redis2 redis3 redis4"
-        - "REDIS_CLUSTER_CREATOR=yes"
-      ports:
-        - "6379:6379"
-      depends_on:
-        - redis1
-        - redis2
-        - redis3
+#    redis1:
+#      image: bitnami/redis-cluster:6.2
+#      environment:
+#        - "ALLOW_EMPTY_PASSWORD=yes"
+#        - "REDIS_CLUSTER_REPLICAS=1"
+#        - "REDIS_NODES=redis1 redis2 redis3 redis4"
+#    redis2:
+#      image: bitnami/redis-cluster:6.2
+#      environment:
+#        - "ALLOW_EMPTY_PASSWORD=yes"
+#        - "REDIS_CLUSTER_REPLICAS=1"
+#        - "REDIS_NODES=redis1 redis2 redis3 redis4"
+#    redis3:
+#      image: bitnami/redis-cluster:6.2
+#      environment:
+#        - "ALLOW_EMPTY_PASSWORD=yes"
+#        - "REDIS_CLUSTER_REPLICAS=1"
+#        - "REDIS_NODES=redis1 redis2 redis3 redis4"
+#    redis4:
+#      image: bitnami/redis-cluster:6.2
+#      environment:
+#        - "ALLOW_EMPTY_PASSWORD=yes"
+#        - "REDIS_CLUSTER_REPLICAS=1"
+#        - "REDIS_NODES=redis1 redis2 redis3 redis4"
+#        - "REDIS_CLUSTER_CREATOR=yes"
+#      ports:
+#        - "6379:6379"
+#      depends_on:
+#        - redis1
+#        - redis2
+#        - redis3
 
     pos_1:
         build: .

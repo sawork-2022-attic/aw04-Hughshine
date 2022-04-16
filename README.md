@@ -1,11 +1,25 @@
-# Structure
+# Plain
 
-1. haproxy & sticky session 
-2. biz docker containers 
-3. redis (cluster?) for cache server(s)
-4. load testing
+basic functions with cache/session (redis)
 
-## install
+```
+// start your redis & config your application.properties 
+mvn clean spring-boot:run
+```
+
+# with haproxy and redis cluster
+
+```
+docker-compose up
+```
+
+> Some network issues...
+
+# gatling
+
+load testing
+
+# dep
 
 docker-compose:
 
@@ -16,11 +30,12 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 docker-compose --version
 ```
 
-# Others
+pay attention to bridge network (related with `application.properties`)
+
+You should first build your project to generate `.jar` (with correct properties), haven't tackle with this.
 
 ```
 mvn clean package
-docker-compose up --no-start
 ```
 
 ***

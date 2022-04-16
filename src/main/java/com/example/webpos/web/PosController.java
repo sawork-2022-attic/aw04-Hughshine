@@ -46,8 +46,8 @@ public class PosController {
         double total = posService.total(cart);
         model.addAttribute("products", posService.products());
         model.addAttribute("cart", cart);
-        model.addAttribute("tax", "" + tax*100 + "%"); // TODO
-        model.addAttribute("discount", "" + discount*100 + "%"); // TODO
+        model.addAttribute("tax", "" + tax*100 + "%");
+        model.addAttribute("discount", "" + discount*100 + "%");
         model.addAttribute("subtotal", total);
         model.addAttribute("total", total * (1 - discount) * (1 + tax));
         return "index";
