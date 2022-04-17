@@ -29,6 +29,25 @@ docker-compose up
 
 load testing
 
+```
+wget https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.7.6/gatling-charts-highcharts-bundle-3.7.6-bundle.zip
+```
+
+测试了1pos1redis/4pos1redis/4pos6redis, 分别在访问量50/500/1500的情况。运算量都在CPU可控范围内，
+
+## 1pos1redis & 4pos1redis
+
+发现忘记限制1pos的CPU使用了。明天早上补上。
+
+## 4pos1redis & 4pos6redis
+
+4pos1redis各组实验与4pos6redis区别较小（后者略微好一点，<800的比率差不多），认为可能是对单独的redis与6个redis没有做性能限制的缘故，而6redis能运用一定的多核性能，所以好一点。
+
+![](images/4pos1redis-500.png)
+
+![](images/4pos6redis-500.png)
+
+
 # dep
 
 docker-compose:
@@ -51,6 +70,8 @@ redis-cli -c [-h redis1] [-p port]
 > SET mykey "hello"
 > get mykey
 ```
+
+> 不知道为什么，忽然不能wsl的localhost和win的不一致了... 再经过一个5000的访问之后
 
 ***
 
