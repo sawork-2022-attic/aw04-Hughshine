@@ -33,28 +33,38 @@ services:
 #        - redis2
 #        - redis3
 
-    pos_1:
+    pos1:
         build: .
         cpu_count: 1
         ports: 
           - "8081:8080"
-    pos_2:
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
+    pos2:
         build: .
         cpu_count: 1
         ports: 
           - "8082:8080"
-    pos_3:
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
+    pos3:
         build: .
         cpu_count: 1
         ports: 
           - "8083:8080"
-    pos_4:
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
+    pos4:
         build: .
         cpu_count: 1
         ports: 
           - "8084:8080"
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
 
     haproxy:
         build: ./haproxy
         ports:
           - "8080:8080"
+        extra_hosts:
+          - "host.docker.internal:host-gateway"

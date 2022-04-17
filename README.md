@@ -10,7 +10,19 @@ mvn clean spring-boot:run
 # with haproxy and redis cluster
 
 ```
+# connect to host redis(not cluster): extra-hosts & change protected mode
+
+https://stackoverflow.com/questions/19091087/open-redis-port-for-remote-connections
+https://stackoverflow.com/questions/40678865/how-to-connect-to-remote-redis-server
+https://stackoverflow.com/questions/48546124/what-is-linux-equivalent-of-host-docker-internal
+```
+
+```
+docker-compose up -d --force-recreate --renew-anon-volumes # not use old image
+
+docker-compose pull
 docker-compose up
+docker-compose down -v
 ```
 
 > Some network issues...
