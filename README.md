@@ -25,19 +25,6 @@ docker-compose build --no-cache
 docker-compose up
 ```
 
-```
-docker-compose up [-d] --force-recreate --renew-anon-volumes # not use old image
-
-docker-compose pull
-docker-compose up
-
-docker-compose down -v
-docker-compose build --no-cache
-... should not build with cache
-```
-
-> Some network issues...
-
 # gatling
 
 load testing
@@ -55,33 +42,29 @@ docker-compose --version
 
 pay attention to bridge network (related with `application.properties`)
 
-You should first build your project to generate `.jar` (with correct properties), haven't tackle with this.
+use redis-cli:
 
 ```
-mvn clean package
+redis-cli -c [-h redis1] [-p port]
+> CLUSTER NODES
+> keys *
+> SET mykey "hello"
+> get mykey
 ```
 
 ***
 
-# WebPOS
 
-The demo shows a web POS system , which replaces the in-memory product db in aw03 with a one backed by 京东.
+```
+docker-compose up [-d] --force-recreate --renew-anon-volumes # not use old image
 
+docker-compose pull
+docker-compose up
 
-![](jdpos.png)
-
-To run
-
-```shell
-mvn clean spring-boot:run
+docker-compose down -v
+docker-compose build --no-cache
+... should not build with cache
 ```
 
-Currently, it creates a new session for each user and the session data is stored in an in-memory h2 db. 
-And it also fetches a product list from jd.com every time a session begins.
-
-1. Build a docker image for this application and perform a load testing against it.
-2. Make this system horizontally scalable by using haproxy and perform a load testing against it.
-3. Take care of the **cache missing** problem (you may cache the products from jd.com) and **session sharing** problem (you may use a standalone mysql db or a redis cluster). Perform load testings.
-
-Please **write a report** on the performance differences you notices among the above tasks.
+> Some network issues...
 
