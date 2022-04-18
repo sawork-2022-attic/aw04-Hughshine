@@ -37,7 +37,11 @@ wget https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcha
 
 ## 1pos1redis & 4pos1redis
 
-发现忘记限制1pos的CPU使用了。明天早上补上。
+1pos1redis看起来性能是最好的... 可能是因为用`cpu_count=1`作为资源限制等于没有限制（没找到具体的含义），所以pos越多性能越差了. 用`cpus`限制资源应当更好. 暂时搁置.
+
+![](images/1pos1redis-5000.png)
+
+![](images/4pos1redis-5000.png)
 
 ## 4pos1redis & 4pos6redis
 
@@ -71,7 +75,10 @@ redis-cli -c [-h redis1] [-p port]
 > get mykey
 ```
 
-> 不知道为什么，忽然不能wsl的localhost和win的不一致了... 再经过一个5000的访问之后
+# 未解决的问题
+
+1. 在一次5000流量的压力测试后，wsl的端口就和win的localhost的端口不绑定了. 可能重启会好. 代替方案是在wsl中做压力测试，并使用局域网ip.
+2. 发现docker-compose启动时，偶发spring 通信 redis cluster 的错误（找不到partition），此时进入spring的docker去连redis cluster，check和set都没有问题. 想不清楚具体的原因，可能是pos比某个redis更早地被启用了，然后spring没有尝试重新建立连接，这个问题没有解决.
 
 ***
 
